@@ -96,15 +96,18 @@ AUTOMOUNT_EOF
     chmod +x "$AUTOMOUNT_SCRIPT"
 
     # Создание конфигурации local.conf (минимум — снабжать COPY_AS_IS на automount)
-    cat > "$REAR_CONF" <<EOF
-### Auto-generated /etc/rear/local.conf
+    cat > "$REAR_CONF" <<'EOF'
+### Auto-generated /etc/rear/local.conf (ReaR compliant)
+
 BACKUP=NETFS
-BACKUP_URL="file://${MOUNTPOINT}/backups"
+BACKUP_URL="file:///mnt/rear-usb/backups"
+
 OUTPUT=ISO
-OUTPUT_URL="file://${MOUNTPOINT}/output"
+OUTPUT_URL="file:///mnt/rear-usb/output"
+
 INCLUDE_FILES=( "/boot/grub/grubenv" )
-COPY_AS_IS+=( "$AUTOMOUNT_SCRIPT" )
-COPY_AS_IS+=( "/usr/share/rear/conf/default.conf" )
+
+COPY_AS_IS+=( "/usr/share/rear/rescue/GNU/Linux/20_mount_rear_usb.sh" )
 COPY_AS_IS+=( "/usr/share/rear/conf/default.conf" )
 EOF
 
