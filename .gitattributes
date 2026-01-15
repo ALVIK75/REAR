@@ -1,0 +1,13 @@
+# Enforce Unix line endings for all text files
+
+# Shell scripts must always use LF
+*.sh   text eol=lf
+
+# ReaR configuration files
+*.conf text eol=lf
+
+# Documentation
+*.md   text eol=lf
+
+# Generic text files
+*.txt  text eol=lf
