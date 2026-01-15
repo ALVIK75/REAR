@@ -8,7 +8,7 @@ set -euo pipefail
 
 ### === GLOBAL CONFIG ===
 MOUNTPOINT="/mnt/rear-usb"
-LABEL="REAR-DATA"
+LABEL="REAR_BACKUP"
 BACKUP_DIR="${MOUNTPOINT}/backups"
 REAR_CONF="/etc/rear/local.conf"
 MIN_FREE_SPACE_GB=50
