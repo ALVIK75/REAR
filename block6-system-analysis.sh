@@ -42,7 +42,7 @@ estimate_backup_size() {
     if [ "$total_size" -eq 0 ]; then
         ESTIMATED_BACKUP_SIZE=17179869184
     else
-        ESTIMATED_BACKUP_SIZE=$(( total_size * 60 / 100 ))
+        ESTIMATED_BACKUP_SIZE=$(( total_size * 80 / 100 ))
     fi
     if command -v numfmt >/dev/null 2>&1; then
         local display
