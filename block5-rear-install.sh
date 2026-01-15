@@ -12,22 +12,15 @@ elif [ -f ./block3-package-functions.sh ]; then
     source ./block3-package-functions.sh || true
 fi
 
-check_rear_exfat_support() {
-    echo "[INFO] Проверка поддержки exFAT в ReaR..."
-    if rear -V 2>&1 | grep -qi "exfat"; then
-        echo "[INFO] ReaR поддержива��т exFAT"
-        return 0
+check_exfat_tools() {
+    echo "[INFO] Проверка поддержки exFAT в системе..."
+    if command -v mkfs.exfat >/dev/null 2>&1 || command -v mkexfatfs >/dev/null 2>&1; then
+        echo "[SUCCESS] Утилиты exFAT доступны"
+    else
+        echo "[WARNING] mkfs.exfat не найден — возможен fallback на FAT32 (лимит 4GB)"
     fi
-    if [[ -f /usr/share/rear/conf/default.conf ]]; then
-        if grep -qi "exfat" /usr/share/rear/conf/default.conf 2>/dev/null; then
-            echo "[INFO] ReaR настроен для поддержки exFAT"
-            return 0
-        fi
-    fi
-    echo "[WARNING] ReaR может не иметь встроенной поддержки exFAT"
-    echo "[INFO] Для rescue образа потребуются дополнительные утилиты (exfatprogs)"
-    return 0
 }
+
 
 install_rear() {
     echo "[INFO] Установка ReaR..."
