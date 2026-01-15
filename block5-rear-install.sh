@@ -27,7 +27,7 @@ install_rear() {
     if command -v rear >/dev/null 2>&1; then
         echo "[SUCCESS] ReaR уже установлен"
         rear -V 2>/dev/null || true
-        check_rear_exfat_support
+        check_exfat_tools
         return 0
     fi
 
@@ -43,7 +43,7 @@ install_rear() {
     fi
 
     rear -V 2>/dev/null || true
-    check_rear_exfat_support
+    check_exfat_tools
 
     local dependencies=( xorriso genisoimage dosfstools e2fsprogs parted lvm2 mdadm )
     for dep in "${dependencies[@]}"; do
